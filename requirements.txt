@@ -1,8 +1,14 @@
 APScheduler
 boto3
-google-api-python-client
-google-auth-httplib2
+beautifulsoup4
+lxml
+python-dateutil
+schedule
 google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+azure-storage-blob
+google-cloud-storage
 pydantic-settings
 python-dotenv
 tenacity

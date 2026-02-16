@@ -1,0 +1,32 @@
+services:
+  email-ingestion:
+    build: .
+    container_name: email-ingestion
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      # Mount credentials if needed (e.g. Google Cloud key)
+      # - ./credentials.json:/app/credentials.json
+    environment:
+      - EMAIL_PROVIDER=gmail
+      - SCHEDULE_INTERVAL_MINUTES=15
+      
+      # AWS
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      
+      # Azure
+      - AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING}
+      - AZURE_CONTAINER_NAME=${AZURE_CONTAINER_NAME}
+      
+      # GCP
+      - GCP_BUCKET_NAME=${GCP_BUCKET_NAME}
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      # If using a mounted service account file:
+      # - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials.json
+      
+    # Env file is useful for local development with compose, but in prod we might pass env vars directly
+    env_file:
+      - .env
