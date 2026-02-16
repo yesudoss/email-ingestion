@@ -1,0 +1,10 @@
+APScheduler
+boto3
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+pydantic-settings
+python-dotenv
+tenacity
+SQLAlchemy>=2.0.30
+typing_extensions>=4.10.0
